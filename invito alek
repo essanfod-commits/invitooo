@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Per Aleksandra ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff758c,
+                    #ff7eb3
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+
+            color: white;
+        }
+
+
+        /* ==============================
+           CUORI
+        ============================== */
+
+        .hearts {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 0;
+        }
+
+
+        .heart {
+            position: absolute;
+
+            bottom: -50px;
+
+            font-size: 25px;
+
+            animation:
+                float 7s linear infinite;
+
+            opacity: 0.8;
+        }
+
+
+        @keyframes float {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* ==============================
+           CONTENITORE
+        ============================== */
+
+        .container {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: 92%;
+
+            max-width: 500px;
+
+            max-height: 95vh;
+
+            overflow-y: auto;
+
+            text-align: center;
+
+            background:
+                rgba(255, 255, 255, 0.16);
+
+            backdrop-filter:
+                blur(15px);
+
+            border-radius: 30px;
+
+            padding: 30px 20px;
+
+            box-shadow:
+                0 15px 50px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* ==============================
+           SCHERMATE
+        ============================== */
+
+        .screen {
+            display: none;
+        }
+
+
+        .screen.active {
+
+            display: block;
+
+            animation:
+                appear 0.5s ease;
+        }
+
+
+        @keyframes appear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.9);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* ==============================
+           TESTI
+        ============================== */
+
+        h1 {
+
+            font-size: 30px;
+
+            margin:
+                0 0 25px;
+        }
+
+
+        h2 {
+
+            font-size: 25px;
+
+            margin:
+                15px 0 20px;
+        }
+
+
+        p {
+
+            font-size: 18px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ==============================
+           GIF
+        ============================== */
+
+        .gif {
+
+            width: 100%;
+
+            max-width: 330px;
+
+            max-height: 300px;
+
+            object-fit: contain;
+
+            border-radius: 20px;
+
+            margin:
+                15px auto;
+
+            display: block;
+        }
+
+
+        /* ==============================
+           BOTTONI
+        ============================== */
+
+        .buttons {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 25px;
+
+            flex-wrap: wrap;
+        }
+
+
+        button {
+
+            border: none;
+
+            padding:
+                14px 25px;
+
+            border-radius: 50px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                all 0.3s ease;
+        }
+
+
+        .yes {
+
+            background:
+                #ff1744;
+
+            color: white;
+
+            box-shadow:
+                0 5px 15px
+                rgba(255, 23, 68, 0.4);
+        }
+
+
+        .yes:hover {
+
+            transform:
+                scale(1.08);
+        }
+
+
+        .no {
+
+            background: white;
+
+            color:
+                #ff1744;
+        }
+
+
+        .continue {
+
+            background: white;
+
+            color:
+                #ff1744;
+
+            margin-top: 15px;
+        }
+
+
+        .back {
+
+            background:
+                rgba(255,255,255,0.85);
+
+            color:
+                #ff1744;
+
+            margin-top: 20px;
+
+            padding:
+                11px 20px;
+
+            font-size: 15px;
+        }
+
+
+        /* ==============================
+           SCELTE
+        ============================== */
+
+        .choices {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 14px;
+
+            margin-top: 25px;
+        }
+
+
+        .choice {
+
+            width: 100%;
+
+            background:
+                rgba(255,255,255,0.95);
+
+            color:
+                #ff1744;
+
+            padding: 17px;
+
+            border-radius: 20px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                all 0.3s ease;
+
+            border: none;
+        }
+
+
+        .choice:hover {
+
+            transform:
+                scale(1.04);
+
+            background: white;
+        }
+
+
+        /* ==============================
+           DATA
+        ============================== */
+
+        .date-box {
+
+            margin-top: 20px;
+        }
+
+
+        input[type="date"] {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            font-size: 18px;
+
+            text-align: center;
+
+            outline: none;
+        }
+
+
+        /* ==============================
+           RIEPILOGO FINALE
+        ============================== */
+
+        .receipt {
+
+            background:
+                rgba(255,255,255,0.96);
+
+            color:
+                #333;
+
+            border-radius: 25px;
+
+            padding:
+                25px 20px;
+
+            margin-top: 20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(0,0,0,0.2);
+        }
+
+
+        .receipt h2 {
+
+            color:
+                #ff1744;
+
+            margin-top: 0;
+        }
+
+
+        .receipt-line {
+
+            border-bottom:
+                1px dashed #ccc;
+
+            padding:
+                15px 0;
+
+            font-size: 19px;
+        }
+
+
+        .receipt-line:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .final-message {
+
+            margin-top: 25px;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+
+        .small {
+
+            font-size: 14px;
+
+            opacity: 0.9;
+
+            margin-top: 15px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================
+     CUORI ANIMATI
+================================== -->
+
+<div class="hearts">
+
+    <div class="heart"
+         style="left:5%; animation-delay:0s;">
+        ❤️
+    </div>
+
+    <div class="heart"
+         style="left:15%; animation-delay:2s;">
+        💕
+    </div>
+
+    <div class="heart"
+         style="left:30%; animation-delay:4s;">
+        ❤️
+    </div>
+
+    <div class="heart"
+         style="left:45%; animation-delay:1s;">
+        💗
+    </div>
+
+    <div class="heart"
+         style="left:60%; animation-delay:3s;">
+        💕
+    </div>
+
+    <div class="heart"
+         style="left:75%; animation-delay:5s;">
+        ❤️
+    </div>
+
+    <div class="heart"
+         style="left:90%; animation-delay:2s;">
+        💖
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- ==================================
+     1 — PACE
+================================== -->
+
+<div
+    id="apology"
+    class="screen active"
+>
+
+    <h1>
+        Sono un coglione...
+    </h1>
+
+
+    <img
+        class="gif"
+        src="https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif"
+        alt="Puppy triste"
+    >
+
+
+    <h2>
+        Pace? ❤️
+    </h2>
+
+
+    <div class="buttons">
+
+        <button
+            class="yes"
+            onclick="sorryYes()"
+        >
+            Sì ❤️
+        </button>
+
+
+        <button
+            class="no"
+            onclick="sorryNo()"
+        >
+            No 😭
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================
+     2 — GIF TRISTI
+     
+     NESSUN TESTO
+     NESSUN TASTO INDIETRO
+================================== -->
+
+<div
+    id="sadGifs"
+    class="screen"
+>
+
+    <img
+        id="sadGif"
+        class="gif"
+        src=""
+        alt="GIF triste"
+    >
+
+
+    <button
+        class="continue"
+        onclick="nextSadGif()"
+    >
+        Continua ❤️
+    </button>
+
+</div>
+
+
+<!-- ==================================
+     3 — DOMANDA USCITA
+================================== -->
+
+<div
+    id="question"
+    class="screen"
+>
+
+    <h1>
+        Aleksandra ❤️
+    </h1>
+
+
+    <h2>
+        Ti va di uscire con me?
+    </h2>
+
+
+    <img
+        class="gif"
+        src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif"
+        alt="Cute"
+    >
+
+
+    <div class="buttons">
+
+        <button
+            class="yes"
+            onclick="dateYes()"
+        >
+            Sì ❤️
+        </button>
+
+
+        <button
+            id="dateNo"
+            class="no"
+            onclick="dateNo()"
+        >
+            No 😭
+        </button>
+
+    </div>
+
+
+    <!-- TASTO INDIETRO SOLO QUI -->
+
+    <button
+        class="back"
+        onclick="showScreen('apology')"
+    >
+        ⬅️ Torna indietro
+    </button>
+
+</div>
+
+
+<!-- ==================================
+     4 — SCELTA APPUNTAMENTO
+================================== -->
+
+<div
+    id="choices"
+    class="screen"
+>
+
+    <h1>
+        Cosa ti va? ❤️
+    </h1>
+
+
+    <div class="choices">
+
+
+        <button
+            class="choice"
+            onclick="choose('film')"
+        >
+            🎬 Film e chill a casa
+        </button>
+
+
+        <button
+            class="choice"
+            onclick="choose('cena')"
+        >
+            🍝 Cena fuori
+        </button>
+
+
+        <button
+            class="choice"
+            onclick="choose('mare')"
+        >
+            🍻 Birretta sul mare
+        </button>
+
+
+        <button
+            class="choice"
+            onclick="choose('amsterdam')"
+        >
+            ✈️ Viaggio ad Amsterdam
+        </button>
+
+
+    </div>
+
+
+    <button
+        class="back"
+        onclick="showScreen('question')"
+    >
+        ⬅️ Torna indietro
+    </button>
+
+</div>
+
+
+<!-- ==================================
+     5 — RISULTATO DELLA SCELTA
+     
+     SOLO TITOLO + GIF
+================================== -->
+
+<div
+    id="result"
+    class="screen"
+>
+
+    <h1 id="resultTitle"></h1>
+
+
+    <img
+        id="resultGif"
+        class="gif"
+        src=""
+        alt="Scelta"
+    >
+
+
+    <!-- NESSUNA FRASE QUI -->
+
+    <p
+        id="resultText"
+        style="display:none;"
+    ></p>
+
+
+    <button
+        id="resultContinue"
+        class="continue"
+        onclick="afterChoice()"
+    >
+        Continua ❤️
+    </button>
+
+
+    <br>
+
+
+    <button
+        class="back"
+        onclick="showScreen('choices')"
+    >
+        ⬅️ Torna indietro
+    </button>
+
+</div>
+
+
+<!-- ==================================
+     6 — SCELTA DATA
+================================== -->
+
+<div
+    id="dateSelection"
+    class="screen"
+>
+
+    <h1>
+        ✈️ Amsterdam ❤️
+    </h1>
+
+
+    <p>
+        Scegliamo la data 👀
+    </p>
+
+
+    <div class="date-box">
+
+        <input
+            type="date"
+            id="tripDate"
+        >
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="yes"
+            onclick="confirmDate()"
+        >
+            Conferma data ❤️
+        </button>
+
+    </div>
+
+
+    <button
+        class="back"
+        onclick="showScreen('result')"
+    >
+        ⬅️ Torna indietro
+    </button>
+
+</div>
+
+
+<!-- ==================================
+     7 — SCHERMATA FINALE
+================================== -->
+
+<div
+    id="final"
+    class="screen"
+>
+
+    <h1>
+        ❤️ È DECISO ❤️
+    </h1>
+
+
+    <!-- GIF FINALE -->
+
+    <img
+        class="gif"
+        src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWE3dXBncGJxamt6YXBxbG9sM2xrNzRhc2h2ZTMzMDA3cHMzNzRvdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KK6stQXoHmDM4/giphy.gif"
+        alt="Amsterdam"
+    >
+
+
+    <!-- RIEPILOGO -->
+
+    <div class="receipt">
+
+        <h2>
+            🧾 Riepilogo
+        </h2>
+
+
+        <div class="receipt-line">
+
+            ✈️
+            <strong>
+                Viaggio ad Amsterdam
+            </strong>
+
+        </div>
+
+
+        <div class="receipt-line">
+
+            📅
+            <strong>
+                Data:
+            </strong>
+
+            <br>
+
+            <span id="finalDate"></span>
+
+        </div>
+
+
+        <div class="receipt-line">
+
+            ❤️
+            <strong>
+                Scelta confermata
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCREENSHOT -->
+
+    <div class="final-message">
+
+        📸 FAI UNO SCREEN DI QUESTA SCHERMATA
+
+        <br><br>
+
+        E MANDAMELO ❤️
+
+    </div>
+
+
+    <p class="small">
+
+        Così non puoi più tirarti indietro 😌✈️
+
+    </p>
+
+
+    <button
+        class="back"
+        onclick="showScreen('dateSelection')"
+    >
+        ⬅️ Cambia data
+    </button>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* ==================================
+   VARIABILI
+================================== */
+
+let sadIndex = 0;
+
+let selectedChoice = "";
+
+
+/* ==================================
+   GIF TRISTI
+================================== */
+
+const sadGifs = [
+
+    "https://media.giphy.com/media/OPU6wzx8JrHna/giphy.gif",
+
+    "https://media.giphy.com/media/3o6wrvdHFbwBrUFenu/giphy.gif",
+
+    "https://media.giphy.com/media/ISOckXUybVfQ4/giphy.gif",
+
+    "https://media.giphy.com/media/d2lcHJTG5Tscg/giphy.gif"
+
+];
+
+
+/* ==================================
+   CAMBIA SCHERMATA
+================================== */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+}
+
+
+/* ==================================
+   PACE — SI
+================================== */
+
+function sorryYes() {
+
+    showScreen("question");
+
+}
+
+
+/* ==================================
+   PACE — NO
+================================== */
+
+function sorryNo() {
+
+    sadIndex = 0;
+
+
+    document
+        .getElementById("sadGif")
+        .src = sadGifs[sadIndex];
+
+
+    showScreen("sadGifs");
+
+}
+
+
+/* ==================================
+   GIF TRISTI
+================================== */
+
+function nextSadGif() {
+
+    sadIndex++;
+
+
+    if (sadIndex < sadGifs.length) {
+
+        document
+            .getElementById("sadGif")
+            .src = sadGifs[sadIndex];
+
+    }
+
+    else {
+
+        showScreen("question");
+
+    }
+
+}
+
+
+/* ==================================
+   USCITA — SI
+================================== */
+
+function dateYes() {
+
+    showScreen("choices");
+
+}
+
+
+/* ==================================
+   USCITA — NO
+   SI RIMPICCIOLISCE
+================================== */
+
+function dateNo() {
+
+    const button =
+        document.getElementById("dateNo");
+
+
+    const currentSize =
+        parseFloat(
+            window.getComputedStyle(button)
+                .fontSize
+        );
+
+
+    const currentWidth =
+        parseFloat(
+            window.getComputedStyle(button)
+                .width
+        );
+
+
+    const currentHeight =
+        parseFloat(
+            window.getComputedStyle(button)
+                .height
+        );
+
+
+    if (currentSize > 4) {
+
+        button.style.fontSize =
+            (currentSize * 0.75) + "px";
+
+
+        button.style.width =
+            (currentWidth * 0.75) + "px";
+
+
+        button.style.height =
+            (currentHeight * 0.75) + "px";
+
+
+        button.style.padding =
+            "5px";
+
+    }
+
+    else {
+
+        button.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* ==================================
+   SCELTA APPUNTAMENTO
+================================== */
+
+function choose(choice) {
+
+    selectedChoice = choice;
+
+
+    const title =
+        document.getElementById("resultTitle");
+
+
+    const gif =
+        document.getElementById("resultGif");
+
+
+    const continueButton =
+        document.getElementById("resultContinue");
+
+
+    /* ------------------------------
+       FILM
+    ------------------------------ */
+
+    if (choice === "film") {
+
+        title.innerHTML =
+            "🎬 Film e chill a casa ❤️";
+
+
+        gif.src =
+            "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif";
+
+
+        continueButton.innerHTML =
+            "Continua ❤️";
+
+    }
+
+
+    /* ------------------------------
+       CENA
+    ------------------------------ */
+
+    if (choice === "cena") {
+
+        title.innerHTML =
+            "🍝 Cena fuori ❤️";
+
+
+        gif.src =
+            "https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif";
+
+
+        continueButton.innerHTML =
+            "Continua ❤️";
+
+    }
+
+
+    /* ------------------------------
+       MARE
+    ------------------------------ */
+
+    if (choice === "mare") {
+
+        title.innerHTML =
+            "🍻 Birretta sul mare ❤️";
+
+
+        gif.src =
+            "https://media.giphy.com/media/3o7TKsQ8UQJmN5Y4yI/giphy.gif";
+
+
+        continueButton.innerHTML =
+            "Continua ❤️";
+
+    }
+
+
+    /* ------------------------------
+       AMSTERDAM
+    ------------------------------ */
+
+    if (choice === "amsterdam") {
+
+        title.innerHTML =
+            "✈️ AMSTERDAM ❤️";
+
+
+        gif.src =
+            "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWE3dXBncGJxamt6YXBxbG9sM2xrNzRhc2h2ZTMzMDA3cHMzNzRvdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KK6stQXoHmDM4/giphy.gif";
+
+
+        continueButton.innerHTML =
+            "Scegliamo la data ✈️";
+
+    }
+
+
+    showScreen("result");
+
+}
+
+
+/* ==================================
+   DOPO LA SCELTA
+================================== */
+
+function afterChoice() {
+
+    if (selectedChoice === "amsterdam") {
+
+        showScreen("dateSelection");
+
+    }
+
+    else {
+
+        /*
+         * Per le altre scelte
+         * torniamo alla scelta.
+         */
+
+        showScreen("choices");
+
+    }
+
+}
+
+
+/* ==================================
+   CONFERMA DATA
+================================== */
+
+function confirmDate() {
+
+    const dateInput =
+        document.getElementById("tripDate");
+
+
+    const date =
+        dateInput.value;
+
+
+    if (!date) {
+
+        alert(
+            "Prima scegli una data ❤️"
+        );
+
+        return;
+
+    }
+
+
+    const parts =
+        date.split("-");
+
+
+    const formattedDate =
+        parts[2] + "/" +
+        parts[1] + "/" +
+        parts[0];
+
+
+    document
+        .getElementById("finalDate")
+        .innerText =
+        formattedDate;
+
+
+    showScreen("final");
+
+}
+
+
+/* ==================================
+   CUORI CASUALI
+================================== */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.className =
+        "heart";
+
+
+    const hearts = [
+
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "💘"
+
+    ];
+
+
+    heart.innerHTML =
+        hearts[
+            Math.floor(
+                Math.random() *
+                hearts.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+
+    heart.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+
+    document
+        .querySelector(".hearts")
+        .appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 10000);
+
+}
+
+
+/* ==================================
+   CREA CUORI OGNI 800ms
+================================== */
+
+setInterval(
+    createHeart,
+    800
+);
+
+</script>
+
+
+</body>
+
+</html>
